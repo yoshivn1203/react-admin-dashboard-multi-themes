@@ -1,6 +1,7 @@
 import React from 'react';
 import Dropdown from '../dropdown/Dropdown';
 import { Link } from 'react-router-dom';
+import ThemeMenu from '../thememenu/ThemeMenu';
 import notifications from '../../assets/JsonData/notification.json';
 
 import user_image from '../../assets/images/tuat.png';
@@ -13,7 +14,6 @@ const curr_user = {
   display_name: 'Khai Nguyen',
   image: user_image,
 };
-
 const renderNotificationItem = (item, index) => (
   <div className='notification-item' key={index}>
     <i className={item.icon}></i>
@@ -65,7 +65,9 @@ const TopNav = () => {
           />
           {/* dropdown here */}
         </div>
-        <div className='topnav__right-item'>{/* <ThemeMenu/> */}</div>
+        <div className='topnav__right-item'>
+          <ThemeMenu />
+        </div>
       </div>
     </div>
   );
