@@ -1,10 +1,18 @@
-import React from 'react';
-import Chart from 'react-apexcharts';
+import React, { useEffect } from 'react';
+
 import { Link } from 'react-router-dom';
 
-import statusCards from '../assets/JsonData/status-card-data.json';
+import Chart from 'react-apexcharts';
+
+import { useSelector } from 'react-redux';
+
 import StatusCard from '../components/status-card/StatusCard';
+
 import Table from '../components/table/Table';
+
+import Badge from '../components/badge/Badge';
+
+import statusCards from '../assets/JsonData/status-card-data.json';
 
 const chartOptions = {
   series: [
@@ -137,10 +145,15 @@ const renderOrderBody = (item, index) => (
     <td>{item.user}</td>
     <td>{item.price}</td>
     <td>{item.date}</td>
-    <td>{/* <Badge type={orderStatus[item.status]} content={item.status} /> */}</td>
+    <td>
+      <Badge type={orderStatus[item.status]} content={item.status} />
+    </td>
   </tr>
 );
+
 const Dashboard = () => {
+  // const themeReducer = useSelector((state) => state.ThemeReducer.mode);
+
   return (
     <div>
       <h2 className='page-header'>Dashboard</h2>
@@ -156,15 +169,20 @@ const Dashboard = () => {
         </div>
         <div className='col-6'>
           <div className='card full-height'>
+            {/* chart */}
             <Chart
-              // options={themeReducer === 'theme-mode-dark' ? {
-              //     ...chartOptions.options,
-              //     theme: { mode: 'dark'}
-              // } : {
-              //     ...chartOptions.options,
-              //     theme: { mode: 'light'}
-              // }}
-              options={{ ...chartOptions.options, theme: { mode: 'light' } }}
+              // options={
+              //   themeReducer === 'theme-mode-dark'
+              //     ? {
+              //         ...chartOptions.options,
+              //         theme: { mode: 'dark' },
+              //       }
+              //     : {
+              //         ...chartOptions.options,
+              //         theme: { mode: 'light' },
+              //       }
+              // }
+              options={chartOptions.options}
               series={chartOptions.series}
               type='line'
               height='100%'
