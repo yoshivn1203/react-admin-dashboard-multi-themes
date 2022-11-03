@@ -1,4 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { setModeAction, setColorAction } from '../../features/themeSlice';
 
 import './thememenu.css';
 
@@ -67,6 +69,7 @@ const clickOutsideRef = (content_ref, toggle_ref) => {
 const ThemeMenu = () => {
   const menu_ref = useRef(null);
   const menu_toggle_ref = useRef(null);
+  const dispatch = useDispatch();
 
   clickOutsideRef(menu_ref, menu_toggle_ref);
 
@@ -81,13 +84,13 @@ const ThemeMenu = () => {
   const setMode = (mode) => {
     setcurrMode(mode.id);
     localStorage.setItem('themeMode', mode.class);
-    // dispatch(ThemeAction.setMode(mode.class))
+    dispatch(setModeAction(mode.class));
   };
 
   const setColor = (color) => {
     setcurrColor(color.id);
     localStorage.setItem('colorMode', color.class);
-    // dispatch(ThemeAction.setColor(color.class))
+    dispatch(setColorAction(color.class));
   };
 
   useEffect(() => {

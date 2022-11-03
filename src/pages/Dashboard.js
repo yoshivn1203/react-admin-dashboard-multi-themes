@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import { Link } from 'react-router-dom';
 
@@ -152,7 +152,7 @@ const renderOrderBody = (item, index) => (
 );
 
 const Dashboard = () => {
-  // const themeReducer = useSelector((state) => state.ThemeReducer.mode);
+  const themeReducer = useSelector((state) => state.theme);
 
   return (
     <div>
@@ -171,18 +171,17 @@ const Dashboard = () => {
           <div className='card full-height'>
             {/* chart */}
             <Chart
-              // options={
-              //   themeReducer === 'theme-mode-dark'
-              //     ? {
-              //         ...chartOptions.options,
-              //         theme: { mode: 'dark' },
-              //       }
-              //     : {
-              //         ...chartOptions.options,
-              //         theme: { mode: 'light' },
-              //       }
-              // }
-              options={chartOptions.options}
+              options={
+                themeReducer === 'theme-mode-dark'
+                  ? {
+                      ...chartOptions.options,
+                      theme: { mode: 'dark' },
+                    }
+                  : {
+                      ...chartOptions.options,
+                      theme: { mode: 'light' },
+                    }
+              }
               series={chartOptions.series}
               type='line'
               height='100%'
